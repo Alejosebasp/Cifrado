@@ -5,6 +5,8 @@
  */
 package data;
 
+import java.util.logging.Logger;
+
 /**
  *
  * @author Estudiante
@@ -13,10 +15,21 @@ public class Stock extends ShareAsset{
     
     protected int totalShares;
 
-    public Stock(int totalShares) {
+    public Stock(String symbol, double totalCost, double CurrentPrice, int totalShares) {
+        super(symbol, totalCost, CurrentPrice);
         this.totalShares = totalShares;
     }
 
+    public String getSymbol() {
+        return symbol;
+    }
+
+    @Override
+    public String toString() {
+        return "Tipo de asset: Stock,"+ " Symbol: "+symbol+", Total cost: "+totalCost
+                +", Current price: "+CurrentPrice+ ", Total shares: " + totalShares;
+    }
+    
     @Override
     public double getMarketValue() {
         return totalShares*CurrentPrice;

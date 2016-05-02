@@ -13,8 +13,9 @@ public class MutualFund extends ShareAsset{
     
     protected double totalShares;
 
-    public MutualFund(double totalShares) {
-        this.totalShares = totalShares;
+    public MutualFund(String symbol, double totalCost, double CurrentPrice, double totalShares) {
+        super(symbol, totalCost, CurrentPrice);
+        this.totalShares=totalShares;
     }
     
     @Override

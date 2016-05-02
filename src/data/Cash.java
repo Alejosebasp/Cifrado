@@ -16,6 +16,11 @@ public class Cash implements Asset{
     public Cash(double amoun) {
         this.amoun = amoun;
     }
+
+    @Override
+    public String toString() {
+        return "Tipo de asset: Cash," + " Amoun: " + amoun;
+    }
     
     @Override
     public double getMarketValue(){

@@ -13,15 +13,25 @@ public class DividentStock extends Stock{
     
     protected double dividends;
 
-    public DividentStock(double dividends, int totalShares) {
-        super(totalShares);
-        this.dividends = dividends;
+    public DividentStock(String symbol, double totalCost, double CurrentPrice, int totalShares, double dividens) {
+        super(symbol, totalCost, CurrentPrice, totalShares);
+        this.dividends = dividens;
+    }
+
+    public String getSymbol() {
+        return symbol;
+    }
+
+    @Override
+    public String toString() {
+        return "Tipo de asset: DividentStock,"+ " Symbol: "+symbol+", Total cost: "+totalCost
+                +", Current price: "+CurrentPrice+ ", Total shares: " + totalShares+", Dividens: "+dividends;
     }
     
     @Override
     public double getMarketValue(){
-        
-        return dividends+getMarketValue();
+        double a = (totalShares*CurrentPrice)+dividends;
+        return a;
     }
 
     @Override

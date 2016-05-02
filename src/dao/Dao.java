@@ -5,9 +5,9 @@
  */
 package dao;
 
+import data.Asset;
 import java.util.*;
 import java.io.*;
-import data.Dato;
 
 /**
  *
@@ -15,26 +15,46 @@ import data.Dato;
  */
 public class Dao {
     
-    public Dato desencriptar(Scanner sc){
-        Dato d = new Dato();
-        String tipo;
-        String tipoEncriptado = sc.next().trim();
-        tipo = (tipoEncriptado);
+    public String desencriptar(String palabra) throws IOException, NullPointerException{
         
-        return d;
+        char[] palabraDesencriptada = new char[10];
+        int caracter = 0;
+        
+        for (int i = 0; i<palabra.length(); i++){
+            char a = palabra.charAt(i);
+            if ((a<=90 && a>=65)){
+                caracter = 1;
+                if (a<68){
+                    a = (char)(a+26);
+                }
+                int b = (((a-65)-3)%26)+65;
+                palabraDesencriptada[i] = (char)b;
+            }
+            else if (a<=57 && a>=48) {
+                caracter =2;
+            }
+        }
+        if (caracter==1) {
+            return String.valueOf(palabraDesencriptada);
+        }
+        else if (caracter==2){
+            return palabra;
+        }
+        return " ";
     }
     
-    public ArrayList<Dato> cargarDatos() throws FileNotFoundException{
-        ArrayList<Dato> datos = new ArrayList<>();
+    public ArrayList<String> cargarDatos() throws FileNotFoundException, IOException, NullPointerException{
+        ArrayList<String> datos = new ArrayList<>();
         Scanner sc;
         
-        sc = new Scanner(new File("datos"));
+        sc = new Scanner(new File("datos.txt"));
         sc.useDelimiter(",");
         
         while (sc.hasNext()) {
-            datos.add(desencriptar(sc));
+            String a;
+            a = desencriptar(sc.next()).trim();
+            datos.add(a);
         }
-        
         return datos;
     }
 }
